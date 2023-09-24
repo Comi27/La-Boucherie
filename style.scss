@@ -1,0 +1,554 @@
+@import "vars";
+@import "globals";
+@import "mixins";
+
+//******Navbar*****//
+.navbar {
+  position: absolute;
+  @include flex;
+  width: 100%;
+  padding: 0 100px;
+  @media (max-width: 1080px) {
+    padding: 0;
+  }
+  .logo {
+    width: 170px;
+  }
+  .nav-links {
+    @media (max-width: 1080px) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      @include flex($justify:center);
+      background-color: rgba($navy, 0.1);
+      backdrop-filter: blur(8px);
+      margin-left: -100%;
+      transition: all 0.5s ease;
+      &.mobile-menu {
+        margin-left: 0;
+        z-index: 2;
+      }
+    }
+  }
+  ul {
+    @media (max-width: 1080px) {
+      flex-direction: column;
+      align-items: center;
+    }
+    display: flex;
+    li {
+      a::before,
+      a::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        width: 0;
+        height: 2px;
+        background-color: $gold;
+        transition: width 0.3s;
+      }
+
+      a::before {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      a::after {
+        right: 50%;
+        transform: translateX(50%);
+      }
+
+      a:hover {
+        color: #dfa753;
+      }
+
+      a:hover::before,
+      a:hover::after {
+        width: 50%;
+      }
+      @media (max-width: 1080px) {
+        margin: 25px 0;
+      }
+      margin: 0 15px;
+      letter-spacing: 3px;
+    }
+  }
+}
+.menu-hamburger {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 35px;
+  @media (max-width: 1080px) {
+    display: block;
+    cursor: pointer;
+    z-index: 2;
+  }
+}
+
+
+//*****Header*****//
+header {
+  height: 100vh;
+  background: linear-gradient(rgba($navy, 0.8), rgba($navy, 0.8)),
+    url(img/header.jpg);
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  @include flex($direction:column, $justify:center);
+  h1{
+    @media (max-width: 767px) {
+      font-size: 40px;
+    }
+  }
+  p {
+    margin: 25px 0;
+  }
+}
+
+//******About us*******//
+
+.about {
+  padding: $padding;
+  background: $navy;
+  .container {
+    @include flex($align:stretch);
+    text-align: center;
+    div {
+      flex: 0 0 30%;
+      @media (max-width: 767px) {
+        flex: 0 0 100%;
+        margin: 15px auto;
+      }
+      p{
+        @media (max-width: 1040px) {
+          font-size: 16px;
+       }
+      }
+    }
+  }
+}
+
+//******Special*******//
+
+.special {
+  background: linear-gradient(rgba($navy, 0.7), rgba($blue, 0.7)),
+    url(img/special-background.jpg);
+  background-position: center;
+  background-size: cover;
+  padding: $padding;
+  .container {
+    @include flex;
+    .img-special {
+      flex: 0 0 48%;
+      @media (max-width: 767px) {
+        flex: 0 0 100%;
+      }
+      img {
+        height: 500px;
+        object-fit: cover;
+      }
+    }
+    .text-special {
+      flex: 0 0 48%;
+      @media (max-width: 767px) {
+        flex: 0 0 100%;
+        margin-top: 30px;
+      }
+      text-align: center;
+      span:last-of-type {
+        display: block;
+        margin: 15px 0;
+        color: $gold;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+//******Menu*******//
+
+.menu {
+  padding: $padding;
+  text-align: center;
+  @include flex($direction:column);
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    .menu-item {
+      @media (max-width: 767px) {
+        width: 100%;
+      }
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+      padding: 20px;
+      margin-bottom: 20px;
+      .img-menu {
+        img {
+          width: 150px;
+          border-radius: 20px;
+        }
+      }
+      .text-menu {
+        @include flex($direction:column, $justify:center,$align:stretch);
+        margin-left: 15px;
+        .menu-1 {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 20px;
+          span {
+            font-weight: 700;
+            color: $gold;
+          }
+          .line {
+            height: 1px;
+            width: 100%;
+            background-color: $gold;
+            margin: 0 10px;
+            align-self: flex-end;
+          }
+        }
+      }
+      p {
+        font-size: 16px;
+        text-align: start;
+      }
+    }
+  }
+}
+
+//******Testimonial*******//
+
+.testimonial {
+  padding: 100px 0 0 0;
+  background: linear-gradient(rgba($navy, 0.8), rgba($blue, 0.8)),
+    url(img/testimonials-background.jpg);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  h2{
+    @media (max-width: 767px) {
+      text-align: center;
+    }
+  }
+  @include flex($direction:column, $justify:center);
+  .container {
+    position: relative;
+    padding: 50px 0;
+    overflow: hidden;
+    .slide {
+      @include flex($direction:column);
+      text-align: center;
+      P {
+        padding: 20px 160px;
+        @media (max-width: 767px) {
+          padding: 0 30px;
+        }
+      }
+      .icon {
+        font-size: 30px;
+        color: $gold;
+      }
+      .details {
+        margin: 20px 0;
+        display: flex;
+        flex-direction: column;
+        .name {
+          font-size: 25px;
+          font-weight: 500;
+        }
+        .customer {
+          margin: 10px auto;
+          font-weight: 500;
+          color: $gold;
+        }
+      }
+    }
+    img {
+      height: 170px;
+      width: 170px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .nav-btn {
+      color: $gold;
+    }
+  }
+}
+
+//******Our chefs*******//
+.our-chefs {
+  background: $navy;
+  padding: $padding;
+  @include flex($direction:column);
+  .container {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    article {
+      background: $blue;
+      box-shadow: 5px 5px 20px black;
+      flex: 0 0 30%;
+      @media (max-width: 767px) {
+        flex: 0 0 100%;
+        margin-top: 50px;
+      }
+      img {
+        height: 400px;
+        object-fit: cover;
+        @media (max-width: 767px) {
+          height: auto;
+        }
+      }
+      .text-chefs {
+        padding: 10px 20px;
+        h4 {
+          margin: 0 auto 10px 0;
+        }
+        span {
+          font-weight: 700;
+          font-family: $headerFont;
+          color: $gold;
+          letter-spacing: 3px;
+        }
+        p {
+          font-size: 16px;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+//******Events*******//
+.events {
+  padding: $padding;
+  @include flex($direction:column);
+  h2{
+    text-align: center;
+  }
+  .container {
+    margin-top: 50px;
+    @include flex($align:stretch);
+    .card {
+      @media (max-width: 767px) {
+        margin-top: 50px;
+     }
+      position: relative;
+      flex: 0 0 30%;
+      box-shadow: 5px 5px 20px black;
+      overflow: hidden;
+      @media (max-width: 767px) {
+        flex: 0 0 100%;
+      }
+      img {
+        height: 400px;
+        object-fit: cover;
+        transition: $transition;
+      }
+      .intro {
+        @media (max-width: 767px) {
+          width: 702px;
+        }
+        height: 70px;
+        width: 342px;
+        padding: 6px;
+        position: absolute;
+        bottom: 0;
+        transition: $transition;
+        background: rgba($navy, 0.8);
+        h4 {
+          margin: 10px;
+          color: $gold;
+        }
+        p {
+          margin: 20px;
+          visibility: hidden;
+          opacity: 0;
+          @media (max-width: 560px) {          
+          width: 50%;
+          }
+        }
+      }
+      &:hover {
+        cursor: pointer;
+        img {
+          transform: scale(1.1);
+        }
+        .intro {
+          height: 200px;
+          background: rgba($navy, 0.8);
+          p {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+      }
+    }
+    button{
+      margin: 50px auto 0 auto;
+    }
+  }
+}
+
+
+//*******Book a table*******//
+
+.booking{
+  background:  linear-gradient(rgba($navy, 0.7), rgba($blue, 0.7)), url(img/restaurant.jpg);
+  background-position: center;
+  background-size: cover;
+  padding: $padding;
+  text-align: center;
+  form{
+    @media (max-width: 767px) {
+      padding: 20px;
+   }
+    i{
+      color: $gold;
+      margin-bottom: 5px;
+    }
+    max-width: 600px; 
+    margin: 0 auto;
+    background: $blue;
+    padding: 50px;
+    .form-row{
+      margin: 40px auto;
+      @media (max-width: 767px) {
+        margin: 10px auto;
+     }
+      display: flex;
+      justify-content: center;
+      @media (max-width: 767px) {
+        flex-direction: column;
+     }
+      input[type="text"], input[type="tel"]{
+        padding: 20px 30px;
+        margin: 0 10px;
+        background-color: $navy;
+        border: none;
+        color: $gold;
+        @media (max-width: 767px) {
+          margin-top:10px;
+       }
+      }
+      input[type="date"]{
+        padding: 20px 30px;
+        margin: 0 10px;
+        background-color: $navy;
+        border: none;
+        color: $gold;
+        @media (max-width: 767px) {
+          margin: 0 auto;
+          padding: 20px 52px;
+       }
+      }
+      select{
+        padding: 20px 24px;
+        margin: 0 10px;
+        background-color: $navy;
+        border: none;
+        color: $gold;
+        @media (max-width: 767px) {
+          margin-top:10px;
+          padding: 20px 72px;
+       }
+      } 
+      }
+  }
+
+}
+
+
+//*******Footer*******//
+
+footer {
+  padding: $padding;
+
+  .container {
+    @include flex($align:stretch);
+    @media (max-width: 920px) {
+      flex-direction: column;
+    }
+    .contacts {
+      flex: 0 0 32%;
+      h4{
+        @media (max-width: 920px) {
+          margin-left: 32px;
+        }
+      }
+      .contact {
+        display: flex;
+        margin-top: 20px;
+        @media (max-width: 920px) {
+          justify-content: center;
+        }
+        i {
+          margin: 3px 10px 0 0;
+          color: $gold;
+        }
+      }
+
+      @media (max-width: 920px) {
+        flex: 0 0 100%;
+        margin: 0 auto;
+      }
+    }
+
+    .logo-2 {
+      flex: 0 0 32%;
+
+      img {
+        width: 250px;
+        margin-left: 30px;
+      }
+
+      @media (max-width: 920px) {
+        display: none;
+      }
+    }
+
+    .working-hours {
+      flex: 0 0 32%;
+      text-align: right;
+      p {
+        margin: 20px 0;
+        span {
+          color: $gold;
+        }
+      }
+
+      @media (max-width: 920px) {
+        flex: 0 0 100%;
+        text-align: center;
+        margin-top: 30px;
+      }
+    }
+  }
+}
+
+
+
+
+//*******Bottom bar*******//
+
+.bottom-bar{
+  background: $navy;
+  hr{
+    color: $gold;
+  }
+  p{
+    text-align: center;
+    padding: 20px;
+  }
+}
+
+
+
+
+
